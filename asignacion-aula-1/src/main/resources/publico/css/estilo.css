@@ -1,0 +1,13 @@
+h1{
+    color: orange;
+    text-align: center;
+    font-weight: bold;
+    font-family: "Bookman Old Style";
+}
+
+p{
+    color: black;
+    font-weight: normal;
+    font-size: medium;
+    font-family: "Times New Roman";
+}
