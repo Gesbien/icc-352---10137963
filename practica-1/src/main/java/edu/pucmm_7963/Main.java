@@ -11,16 +11,22 @@ import java.net.URISyntaxException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class Main {
     private static final HttpClient cliente = HttpClient.newHttpClient();
     public static void main(String[] args) {
+
         Scanner scanner = new Scanner(System.in);
         System.out.print("Ingrese una URL válida: ");
-        String url = scanner.nextLine();
-        procesoURL(url);
 
+        try {
+            String url = scanner.nextLine();
+            procesoURL(url);
+        } catch (NoSuchElementException e) {
+            System.out.println("No se encontró ninguna línea de entrada.");
+        }
     }
 
     public static void procesoURL(String url){
