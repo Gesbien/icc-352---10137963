@@ -1,7 +1,5 @@
 package edu.pucmm_7963;
 
-import io.javalin.Javalin;
-import io.javalin.http.staticfiles.Location;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
