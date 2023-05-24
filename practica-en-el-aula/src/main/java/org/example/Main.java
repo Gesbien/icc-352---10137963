@@ -7,9 +7,6 @@ import org.example.encapsulacion.RolesApp;
 import org.example.encapsulacion.Usuario;
 import org.example.services.FakeServices;
 
-import static io.javalin.apibuilder.ApiBuilder.*;
-import static io.javalin.apibuilder.ApiBuilder.get;
-
 public class Main {
     public static void main(String[] args) {
 
@@ -71,12 +68,17 @@ public class Main {
             //Obteniendo la informacion de la petion. Pendiente validar los parametros.
             String nombreUsuario = ctx.formParam("usuario");
             String password = ctx.formParam("password");
-            //Autenticando el usuario para nuestro ejemplo siempre da una respuesta correcta.
-            Usuario usuario = fakeServices.autheticarUsuario(nombreUsuario, password);
-            //agregando el usuario en la session... se puede validar si existe para solicitar el cambio.-
-            ctx.sessionAttribute("usuario", usuario);
-            //redireccionando la vista con autorizacion.
-            ctx.redirect("/");
+            if(nombreUsuario != null && password != null) {
+                //Autenticando el usuario para nuestro ejemplo siempre da una respuesta correcta.
+                Usuario usuario = fakeServices.autheticarUsuario(nombreUsuario, password);
+                //agregando el usuario en la session... se puede validar si existe para solicitar el cambio.-
+                ctx.sessionAttribute("usuario", usuario);
+                //redireccionando la vista con autorizacion.
+                ctx.redirect("/");
+            }
+            else{
+                ctx.status(400);
+            }
         });
         app.get("/", ctx -> {
             ctx.render("/publico/index.html");
