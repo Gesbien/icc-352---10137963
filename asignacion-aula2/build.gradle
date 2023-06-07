@@ -1,0 +1,42 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group = 'pucmm_7963'
+version = '1.0-SNAPSHOT'
+
+mainClassName='pucmm_7963.Main'
+
+repositories {
+    mavenCentral()
+    maven{
+        url "https://maven.reposilite.com/snapshots"
+    }
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.9.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+
+    //dependencia de Javalin
+    implementation 'io.javalin:javalin:5.3.2'
+
+    //manejo de log.
+    implementation "org.slf4j:slf4j-simple:2.0.3"
+
+    // En la versión 5.3.X separaron las clases del renderizado en otro proyecto
+    implementation "io.javalin:javalin-rendering:5.3.2"
+
+    //sistemas de plantilla:
+    implementation 'org.freemarker:freemarker:2.3.32'
+    implementation 'org.thymeleaf:thymeleaf:3.1.1.RELEASE'
+    implementation 'org.apache.velocity:velocity-engine-core:2.3'
+
+    implementation 'com.h2database:h2:1.4.200'
+
+}
+
+test {
+    useJUnitPlatform()
+}
